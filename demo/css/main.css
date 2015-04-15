@@ -1,0 +1,9 @@
+body {
+	background-color: #000;
+	background-image: url("../images/galaxy_starfield.png");
+}
+
+#container {
+	position: absolute;
+	top: 0;
+}

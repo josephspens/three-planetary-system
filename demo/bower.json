@@ -1,9 +1,9 @@
 {
-  "name": "asteroid-visualization",
+  "name": "three-planetary-orbit",
   "version": "0.0.0",
-  "homepage": "https://github.com/josephspens/asteroid-visualization",
+  "homepage": "https://github.com/josephspens/three-planetary-orbit",
   "authors": [
-    "Joseph Spens <joseph@workmarket.com>"
+    "Joseph Spens <joseph@spens.us>"
   ],
   "license": "MIT",
   "dependencies": {

@@ -4,6 +4,8 @@ if (!Detector.webgl) {
 
 var container, stats, camera, controls, scene, renderer, solarSystem;
 
+THREEx.Planets.baseURL = '';
+
 Global = {};
 
 Global.init = function () {

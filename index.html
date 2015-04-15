@@ -1,0 +1,70 @@
+<!doctype html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Cadographer</title>
+		<meta name="description" content="Cadographer">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link href='http://fonts.googleapis.com/css?family=Monda:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+		<!-- <link rel="stylesheet" href="css/normalize.css"> -->
+		<link rel="stylesheet" href="css/sample.css">
+		<link rel="stylesheet" href="css/serviceSpec.css">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<!-- header-->
+		<div id="header">
+			<h1><img src="images/cadographer-logo.png" /></h1>
+			<!--<h1>CADographer <br><span style="font-family: 'Monda', sans-serif;letter-spacing: 0.1em;margin-top: 20px;">Comets, Ateroids, & Dwarf Planets</span></h1>-->
+			<div id="nav">
+				<ul>
+					<li><a href="/">Welcome</a></li>
+					<li><a href="/info.html#mission">Mission</a></li>
+					<li><a href="/info.html#index.html">FAQ</a></li>
+					<li><a href="/info.html#asteroid-info.html">Find an Asteroid</a></li>
+					<li><a href="/info.html#mission" class="join">Join the grand challenge</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Sidebar -->
+		<div id="sidebar">
+			<ul>
+				<li>Sort by:</li>
+				<li>Type:
+					<ul>
+						<li>Asteroids</li>
+						<li>Comets</li>
+					</ul>
+				</li>
+				<li class="active">Impact</li>
+				<li>Size</li>
+				<li>Distance</li>
+				<li>Composition
+					<ul>
+						<li>Ice</li>
+						<li>Water</li>
+						<li>Unknown</li>
+					</ul>
+				</li>
+				<li>Value</li>
+			</ul>
+		</div>
+
+		<div id="container"></div>
+
+		<script src="components/jquery/dist/jquery.min.js"></script>
+		<script src="components/threejs/build/three.min.js"></script>
+		<script src="components/threex.planets/threex.planets.js"></script>
+		<script src="components/underscore/underscore-min.js"></script>
+		<script src="js/lib/TrackballControls.js"></script>
+		<script src="js/lib/Detector.js"></script>
+		<script src="js/lib/Tools.js"></script>
+		<script src="js/lib/Globe.js"></script>
+		<script src="js/lib/System.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

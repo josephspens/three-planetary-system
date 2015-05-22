@@ -2,13 +2,15 @@ if (!Detector.webgl) {
 	Detector.addGetWebGLMessage();
 }
 
-var container, stats, camera, controls, scene, renderer, solarSystem;
+var stats, camera, controls, scene, renderer, solarSystem;
 
 THREEx.Planets.baseURL = '';
 
 Global = {};
 
-Global.init = function () {
+Global.init = function (data) {
+	var container;
+
 	camera = new THREE.PerspectiveCamera(10, window.innerWidth / window.innerHeight, 19, 6000000);
 	camera.position.set(300000, 60000, 500);
 	camera.rotation.set(Math.PI/4, 0, 0);
@@ -23,10 +25,20 @@ Global.init = function () {
 
 	window.addEventListener('resize', this.onWindowResize, false);
 
-	Tools.addCoordinateAxes(scene, 150);
-	Tools.trackballControl(scene);
+	addCoordinateAxes(scene, 150);
+
+	controls = new THREE.TrackballControls(camera);
+	controls.rotateSpeed = 1.0;
+	controls.zoomSpeed = 0.2;
+	controls.panSpeed = 0.8;
+	controls.noZoom = false;
+	controls.noPan = false;
+	controls.staticMoving = true;
+	controls.dynamicDampingFactor = 0.3;
+	controls.keys = [ 65, 83, 68 ];
+
 	this.animate();
-	this.generateMap();
+	solarSystem = new System(scene, data);
 	// $.getJSON('/asteroid', { key: '2004 DG2' }, _.bind(this.addAsteroids, this));
 	this.addAsteroids();
 
@@ -37,233 +49,6 @@ Global.init = function () {
 	// starField.scale.z = 10000;
 	// scene.add(starField);
 };
-
-Global.generateMap = function () {
-	solarSystem = new System({
-		name: 'Sol',
-		radius: 10000000,
-		scene: scene,
-		matrice: true,
-		star: {
-			radius: 69634.2,
-			rotation_time: 25,
-			propagation: {
-				enabled: true,
-				speed: 70,
-				max: 14000,
-				min: 700
-			},
-			satellites: [
-				{
-					name: 'Mercury',
-					radius: 2440,
-					project: true,
-					coordinates: [0.387098, 550, 0],
-					type: 'vividEarth',
-					revolution_time: 88,
-					rotation_time: 58,
-					satellites: []
-				},
-				{
-					name: 'Venus',
-					radius: 6051,
-					project: true,
-					coordinates: [0.723327, 550, 0],
-					type: 'vividEarth',
-					revolution_time: 224,
-					rotation_time: 243,
-					satellites: []
-				},
-				{
-					name: 'Earth',
-					radius: 6371,
-					project: true,
-					coordinates: [1, 550, 0],
-					type: 'vividEarth',
-					revolution_time: 365,
-					rotation_time: 1,
-					satellites: [
-						{
-							name: 'Lune',
-							radius: 1737,
-							coordinates: [0.00257, 0, 0],
-							type: 'Moon',
-							revolution_time: 27,
-							rotation_time: 27
-						}
-					]
-				},
-				{
-					name: 'Mars',
-					radius: 3390,
-					project: true,
-					coordinates: [1.523679, 550, 0],
-					type: 'vividEarth',
-					revolution_time: 686,
-					rotation_time: 1,
-					satellites: [
-						{
-							name: 'Phobos',
-							radius: 11,
-							coordinates: [0.0000626746889, 0, 0],
-							type: 'Moon',
-							revolution_time: 0.3,
-							rotation_time: 0.3
-						},
-						{
-							name: 'Deimos',
-							radius: 6.2,
-							coordinates: [0.000156841805, 0, 0],
-							type: 'Moon',
-							revolution_time: 1.3,
-							rotation_time: 1.3
-						}
-					]
-				},
-				{
-					name: 'Jupiter',
-					radius: 69911,
-					project: true,
-					coordinates: [5.204267, 550, 0],
-					type: 'vividEarth',
-					revolution_time: 4332,
-					rotation_time: 0.416,
-					satellites: [
-						{
-							name: 'Io',
-							radius: 1821,
-							coordinates: [0.00281889039, 0, 0],
-							type: 'Moon',
-							revolution_time: 1.8,
-							rotation_time: 1.8
-						},
-						{
-							name: 'Europa',
-							radius: 1560,
-							coordinates: [0.00448558524, 0, 0],
-							type: 'Moon',
-							revolution_time: 3.5,
-							rotation_time: 3.5
-						},
-						{
-							name: 'Ganymede',
-							radius: 2634,
-							coordinates: [0.00715526227, 0, 0],
-							type: 'Moon',
-							revolution_time: 7.1,
-							rotation_time: 7.1
-						},
-						{
-							name: 'Callisto',
-							radius: 2410,
-							coordinates: [0.0125851323, 0, 0],
-							type: 'Moon',
-							revolution_time: 16.7,
-							rotation_time: 16.7
-						}
-					]
-				},
-				{
-					name: 'Saturn',
-					radius: 58232,
-					project: true,
-					coordinates: [9.5820172, 550, 0],
-					type: 'vividEarth',
-					revolution_time: 10759,
-					rotation_time: 0.416,
-					satellites: [
-						{
-							name: 'Titan',
-							radius: 2576,
-							coordinates: [0.00816769647, 0, 0],
-							type: 'Moon',
-							revolution_time: 15,
-							rotation_time: 15
-						},
-						{
-							name: 'Europa',
-							radius: 763.8,
-							coordinates: [0.00352349935, 0, 0],
-							type: 'Moon',
-							revolution_time: 4.5,
-							rotation_time: 4.5
-						}
-					]
-				},
-				{
-					name: 'Uranus',
-					radius: 25362,
-					project: true,
-					coordinates: [19.1892531, 550, 0],
-					type: 'vividEarth',
-					revolution_time: 30687,
-					rotation_time: 0.71,
-					satellites: [
-						{
-							name: 'Mirando',
-							radius: 235.8,
-							coordinates: [0.000864918728, 0, 0],
-							type: 'Moon',
-							revolution_time: 1.4,
-							rotation_time: 1.4
-						},
-						{
-							name: 'Ariel',
-							radius: 578.9,
-							coordinates: [0.00127688983, 0, 0],
-							type: 'Moon',
-							revolution_time: 2.5,
-							rotation_time: 2.5
-						},
-						{
-							name: 'Umbriel',
-							radius: 584.7,
-							coordinates: [0.00177810017, 0, 0],
-							type: 'Moon',
-							revolution_time: 4.1,
-							rotation_time: 4.1
-						},
-						{
-							name: 'Titania',
-							radius: 788.4,
-							coordinates: [0.00291387837, 0, 0],
-							type: 'Moon',
-							revolution_time: 8.7,
-							rotation_time: 8.7
-						},
-						{
-							name: 'Oberon',
-							radius: 761.4,
-							coordinates: [0.00390059028, 0, 0],
-							type: 'Moon',
-							revolution_time: 13.46,
-							rotation_time: 13.46
-						}
-					]
-				},
-				{
-					name: 'Neptune',
-					radius: 24622,
-					project: true,
-					coordinates: [30.0708999, 550, 0],
-					type: 'vividEarth',
-					revolution_time: 60190,
-					rotation_time: 0.67,
-					satellites: [
-						{
-							name: 'Triton',
-							radius: 1353.4,
-							coordinates: [0.00237141744, 0, 0],
-							type: 'Moon',
-							revolution_time: 5.9,
-							rotation_time: 5.9
-						}
-					]
-				}
-			]
-		}
-	});
-}
 
 Global.onWindowResize = function () {
 	camera.aspect = window.innerWidth / window.innerHeight;
@@ -321,4 +106,25 @@ Global.addAsteroids = function (asteroids) {
 	// });
 };
 
-Global.init();
+function addCoordinateAxes(objecto, size) {
+	size = (typeof size === 'undefined' ? 50 : size);
+
+	function v(x,y,z) { return new THREE.Vector3(x,y,z); }
+
+	var lineGeo = new THREE.Geometry();
+	lineGeo.vertices.push(
+		v(-size, 0, 0), v(size, 0, 0),
+		v(0, -size, 0), v(0, size, 0),
+		v(0, 0, -size), v(0, 0, size)
+	);
+
+	var lineMat = new THREE.LineBasicMaterial({
+		color: 0x000000,
+		lineWidth: 1
+	});
+	var line = new THREE.Line(lineGeo, lineMat);
+	line.type = THREE.Lines;
+	objecto.add(line);
+}
+
+$.getJSON('demo.json', _.bind(Global.init, Global));

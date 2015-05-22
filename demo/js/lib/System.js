@@ -1,4 +1,4 @@
-function System(systemJSON) {
+function System(scene, systemJSON) {
 	this.name = systemJSON.name;
 	this.radius = systemJSON.radius;
 	this.star = systemJSON.star;

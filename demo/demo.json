@@ -1,8 +1,6 @@
 {
-  "name": "Sol",
-  "radius": 10000000,
-  "matrice": true,
   "star": {
+    "name": "Sol",
     "radius": 69634.2,
     "rotation_time": 25,
     "propagation": {

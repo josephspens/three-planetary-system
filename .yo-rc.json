@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "threePlanetarySystem",
+    "style": "scss",
+    "postcss": false
+  }
+}

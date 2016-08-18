@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "jquery": "~2.1.3",
-    "threejs": "r53",
+    "threejs": "r74",
     "underscore": "~1.4.2",
     "threex.planets": "*"
   }
